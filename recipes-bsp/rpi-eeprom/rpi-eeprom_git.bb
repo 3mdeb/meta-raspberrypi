@@ -9,7 +9,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=7dcd1a1eb18ae569857c21cae81347cb"
 # https://www.raspberrypi.org/documentation/hardware/raspberrypi/booteeprom.md
 SRC_URI = " \
     git://github.com/${SRCFORK}/rpi-eeprom.git;protocol=git;branch=${SRCBRANCH} \
-    file://default-config.txt \
     file://0001-rpi-eeprom-config-use-usr-bin-python.patch \
 "
 
