@@ -14,8 +14,9 @@ SRC_URI = " \
 
 COMPATIBLE_MACHINE = "raspberrypi4-64"
 
-DEPENDS += "python3-native"
-RDEPENDS_${PN} += "coreutils python3 userland"
+DEPENDS = "python3-native"
+RDEPENDS_${PN} = "coreutils userlandtools"
+RDEPENDS_${PN}-config = "python3"
 
 SRCBRANCH = "master"
 SRCFORK = "raspberrypi"
@@ -27,11 +28,11 @@ PV = "20200903"
 
 S = "${WORKDIR}/git"
 
-inherit deploy python3native
+inherit python3native
 
 do_install() {
     install -d ${D}${bindir}
-    
+
     # install executables
     install -m 0755 ${S}/firmware/vl805 ${D}${bindir}
     install -m 0755 ${S}/rpi-eeprom-update ${D}${bindir}
@@ -50,6 +51,9 @@ do_install() {
     install -d ${D}${sysconfdir}/default
     install -D ${S}/rpi-eeprom-update-default ${D}${sysconfdir}/default/rpi-eeprom-update
 }
+
+PACKAGES =+ "${PN}-config"
+FILES_${PN}-config = "${bindir}/rpi-eeprom-config"
 
 FILES_${PN} += " ${sbindir}/vl805"
 FILES_${PN} += "${base_libdir}/firmware/raspberrypi/bootloader/*"
