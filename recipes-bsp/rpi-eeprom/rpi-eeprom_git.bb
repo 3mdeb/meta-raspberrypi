@@ -15,7 +15,8 @@ SRC_URI = " \
 COMPATIBLE_MACHINE = "raspberrypi4-64"
 
 DEPENDS = "python3-native"
-RDEPENDS_${PN} = "coreutils userlandtools"
+RDEPENDS_${PN} = "coreutils"
+RDEPENDS_${PN} += "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "userlandtools", "userland", d)}"
 RDEPENDS_${PN}-config = "python3"
 
 SRCBRANCH = "master"
