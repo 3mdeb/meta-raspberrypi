@@ -6,6 +6,8 @@ PROVIDES += "virtual/libomxil"
 RPROVIDES_${PN} += "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "", "libgles2 egl libegl libegl1 libglesv2-2", d)}"
 COMPATIBLE_MACHINE = "^rpi$"
 
+RCONFLICTS_${PN} = "userlandtools"
+
 SRC_URI += "\
     file://0001-Allow-applications-to-set-next-resource-handle.patch \
     file://0002-wayland-Add-support-for-the-Wayland-winsys.patch \

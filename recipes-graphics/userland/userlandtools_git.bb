@@ -2,6 +2,8 @@ require userland.inc
 
 COMPATIBLE_MACHINE = "raspberrypi4-64"
 
+RCONFLICTS_${PN} = "userland"
+
 # Keep only those libs & bins that are actually
 # used during boot EEPROM image update
 do_install_append () {
